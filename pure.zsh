@@ -535,6 +535,8 @@ prompt_pure_state_setup() {
 	# show username@host if root, with username in white
 	[[ $UID -eq 0 ]] && username='%F{white}%n%f%F{242}@%m%f'
 
+	[[ -n $SLURM_NODELIST ]] && username="%F{242}%n@%F{red}$SLURM_NODELIST%f"
+
 	typeset -gA prompt_pure_state
 	prompt_pure_state=(
 		username "$username"
