@@ -187,6 +187,10 @@ prompt_pure_precmd() {
 		export VIRTUAL_ENV_DISABLE_PROMPT=12
 	fi
 
+	if [[ -n $CONDA_DEFAULT_ENV ]]; then
+		psvar[12]="$CONDA_DEFAULT_ENV"
+	fi
+
 	# Make sure VIM prompt is reset.
 	prompt_pure_reset_vim_prompt
 
