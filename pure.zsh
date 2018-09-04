@@ -182,8 +182,9 @@ prompt_pure_precmd() {
 	psvar[12]=
 	# When VIRTUAL_ENV_DISABLE_PROMPT is empty, it was unset by the user and
 	# Pure should take back control.
-	if [[ -n $VIRTUAL_ENV ]] && [[ -z $VIRTUAL_ENV_DISABLE_PROMPT || $VIRTUAL_ENV_DISABLE_PROMPT = 12 ]]; then
-		psvar[12]="${VIRTUAL_ENV:t}"
+	if [[ -n $VIRTUAL_ENV  || -n $CONDA_DEFAULT_ENV ]] && [[ -z $VIRTUAL_ENV_DISABLE_PROMPT || $VIRTUAL_ENV_DISABLE_PROMPT = 12 ]]; then
+		psvar12_=${VIRTUAL_ENV:-$CONDA_DEFAULT_ENV}
+		psvar[12]="${psvar12_:t}"
 		export VIRTUAL_ENV_DISABLE_PROMPT=12
 	fi
 
